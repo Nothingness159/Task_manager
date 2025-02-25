@@ -1,0 +1,9 @@
+# Idea
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Maven target directory
+task_manager/target/
