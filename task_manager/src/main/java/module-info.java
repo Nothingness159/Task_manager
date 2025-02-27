@@ -1,4 +1,5 @@
 module com.task_manager {
+    requires java.sql;
     // requires javafx.;
 
     // opens com.task_manager to javafx.;
