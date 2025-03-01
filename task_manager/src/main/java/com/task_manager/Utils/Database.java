@@ -13,14 +13,25 @@ public class Database {
     private static Connection connection;
     private static final String DB_URL = "jdbc:sqlite:src/main/resources/tasks.db";
 
+    // Метод для получения соединения
     public static Connection getConnection() {
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(DB_URL);
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println("Ошибка при подключении к БД: " + e.getMessage());
             }
         }
         return connection;
+    }
+    // Метод для закрытия соединения
+    public static void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println("Ошибка при закрытии соединения с БД: " + e.getMessage());
+            }
+        }
     }
 }
