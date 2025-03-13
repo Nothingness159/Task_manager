@@ -13,6 +13,8 @@ import java.util.List;
 
 public class TaskRepository {
 
+    // Нужно void в boolean переделать, чтобы контроллер понимал, корректно завершено или нет
+
     public TaskRepository() {
         createTable();
     }
@@ -147,7 +149,7 @@ public class TaskRepository {
         }
     }
 
-    public void deleteTask(int taskId) {
+    public boolean deleteTask(int taskId) {
         String sql = "DELETE FROM tasks WHERE id = ?";
 
         try (Connection conn = Database.getConnection();
@@ -157,7 +159,9 @@ public class TaskRepository {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Ошибка при удалении задачи: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
 }

@@ -5,6 +5,7 @@ import com.task_manager.Module.TaskRepository;
 import com.task_manager.View.TaskView;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /*
  * Логика работы приложения (добавление задач, изменение статуса, напоминания)
@@ -12,12 +13,21 @@ import java.time.LocalDateTime;
 
 public class TaskController {
 
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
     private TaskView taskView;
 
     public TaskController(TaskView taskView) {
         this.taskRepository = new TaskRepository();
         this.taskView = taskView;
+    }
+
+    // dbg
+    public TaskController() {
+        this.taskRepository = new TaskRepository();
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepository.getAllTasks();
     }
 
     public void addTask(String title, String description, String category, String priority, LocalDateTime due_date) {
@@ -46,8 +56,8 @@ public class TaskController {
         // updateView();
     }
 
-    public void deleteTask(int taskId) {
-        taskRepository.deleteTask(taskId);
+    public boolean deleteTask(int taskId) {
+        return taskRepository.deleteTask(taskId);
         // updateView();
     }
 
