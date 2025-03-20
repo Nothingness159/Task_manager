@@ -1,16 +1,16 @@
-/* Общий фон для приложения */
+/* Общие стили для приложения */
 .root {
     -fx-background-color: #34495e; /* Темный фон */
 }
 
-/* Белый прямоугольник */
+/* Стили для прямоугольников */
 .rectangle {
     -fx-fill: #ffffff; /* Белый цвет */
-    -fx-arc-width: 30; /* Скругление углов */
-    -fx-arc-height: 30;
+    -fx-arc-width: 40; /* Скругление углов */
+    -fx-arc-height: 40;
 }
 
-/* Заголовки секций (Yesterday, Today, Tomorrow) */
+/* Стили для заголовков */
 .section-title {
     -fx-font-family: "Arial";
     -fx-font-size: 18px;
@@ -19,29 +19,31 @@
     -fx-padding: 5px 0; /* Отступы сверху и снизу */
 }
 
-/* Основной контейнер, содержащий белый прямоугольник и его содержимое */
+/* Стили для контейнеров */
 .rectangle-with-content {
     -fx-translate-x: 10px; /* Сдвиг вправо */
 }
 
-/* Главный вертикальный контейнер внутри белого прямоугольника */
 .main-container {
     -fx-padding: 20px; /* Внутренние отступы */
-    -fx-spacing: 20px; /* Расстояние между элементами */
 }
 
-/* Верхний блок (текст "Recent Tasks" и кнопки) */
 .header-box {
     -fx-spacing: 10px; /* Расстояние между элементами */
-    -fx-padding: 10px 20px; /* Внутренние отступы */
     -fx-alignment: center-left; /* Выравнивание элементов */
 }
 
-/* Заголовок для секции "Recent Tasks" */
-#recentTasksLabel {
-    -fx-padding: -10px 0 0 -8px;
+
+.task-section {
+    -fx-spacing: 10px; /* Расстояние между элементами */
 }
 
+.center-container {
+    -fx-translate-x: -290px;
+    -fx-translate-y: 15px;
+}
+
+/* Стили для кнопок */
 .plus-button {
     -fx-background-color: transparent; /* Прозрачный фон */
     -fx-background-radius: 50%; /* Круглая форма */
@@ -55,15 +57,13 @@
     -fx-text-fill: black; /* Черный цвет текста */
     -fx-alignment: center; /* Центрирование текста */
     -fx-padding: 0; /* Убираем лишние отступы */
-    -fx-translate-x:20px;
+    -fx-translate-x: 20px;
 }
-
 
 .plus-button:hover {
     -fx-background-color: rgba(0, 0, 0, 0.1); /* Эффект при наведении */
 }
 
-/* Кнопка "All >" */
 .all-button {
     -fx-background-color: transparent; /* Прозрачный фон */
     -fx-text-fill: black; /* Черный цвет текста */
@@ -77,37 +77,65 @@
     -fx-background-color: rgba(0, 0, 0, 0.1); /* Эффект при наведении */
 }
 
-/* Контейнер для секций (Yesterday, Today, Tomorrow) */
-.task-section {
-    -fx-spacing: 10px; /* Расстояние между элементами */
-}
-
-/* Прокрутка задач */
+/* Стили для ScrollPane */
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-padding: 0; /* Убираем отступы */
+    -fx-padding: 0;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+    -fx-max-width: 340px;
+    -fx-translate-y: -10px; /* Поднимаем ScrollPane вверх */
+    -fx-hbar-policy: never; /* Скрываем горизонтальный скроллбар */
+    -fx-vbar-policy: never; /* Скрываем вертикальный скроллбар */
 }
 
-/* Контейнер задач внутри ScrollPane */
+.rounded-scroll-container {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 30 30;
+    -fx-border-radius: 0 0 30 30;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-clip: true;
+}
+
 .vbox-scrollable {
     -fx-max-width: 350px; /* Ширина контейнера равна ширине прямоугольника */
-    -fx-max-height: 750px; /* Высота контейнера равна высоте прямоугольника */
     -fx-background-color: transparent; /* Прозрачный фон */
     -fx-padding: 0; /* Убираем отступы */
-    -fx-traslate-y:150px;
+    -fx-spacing: 10px; /* Расстояние между элементами */
 }
 
-/* Отдельная настройка прокрутки для Tomorrow */
-#scrollPaneTomorrow {
-    -fx-padding: 0 0 30px 0; /* Дополнительный отступ снизу */
+.folders-pane {
+    -fx-background-color: white; /* Белый фон */
+    -fx-background-radius: 30; /* Скругление углов */
+    -fx-border-radius: 30;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
 }
 
-#tasksContainerTomorrow {
-    -fx-padding: 0 0 30px 0; /* Отступ снизу для содержимого */
+.statistic-pane {
+    -fx-background-color: white; /* Белый фон */
+    -fx-background-radius: 30; /* Скругление углов */
+    -fx-border-radius: 30;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-max-height: 510px; /* Ограничиваем высоту */
 }
 
-/* Задачи внутри секций */
+.folders-container {
+    -fx-translate-x: 400px;
+}
+
+#foldersLabel {
+    -fx-translate-x: -55px;
+}
+
+.foldersButton {
+    -fx-translate-x: 205px;
+}
+
+/* Стили для задач */
 .task-name {
     -fx-font-family: "Arial";
     -fx-font-size: 16px;
@@ -121,7 +149,7 @@
     -fx-text-fill: #2c3e50; /* Темно-серый цвет текста */
 }
 
-/* Стиль чекбоксов */
+/* Стили для чекбоксов */
 .task-checkbox {
     -fx-pref-width: 35px;
     -fx-pref-height: 35px;
@@ -135,18 +163,28 @@
     -fx-background-color: #34495e; /* Эффект при наведении */
 }
 
-/* Элементы линии, разделяющие секции */
+/* Стили для линий */
 .line {
     -fx-stroke: #000000; /* Черная линия */
     -fx-stroke-width: 2;
 }
-#yesterdayLine{
-    -fx-translate-y: 22px;
+
+#yesterdayLine {
+    -fx-translate-y: 15px;
 }
-#todayLine{
-    -fx-translate-y: 22px;
+
+#todayLine {
+    -fx-translate-y: 15px;
 }
-#recentaskLine{
-    -fx-translate-y:-25px;
-    -fx-translate-x:3px;
+
+#lastLine {
+    -fx-translate-y: -30px;
+}
+
+#recentaskLine {
+    -fx-translate-y: -10px;
+}
+
+#yesterdaySection {
+    -fx-translate-y: -5px;
 }

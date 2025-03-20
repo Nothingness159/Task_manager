@@ -20,7 +20,7 @@
                 <Rectangle fx:id="tasksRectangle" width="350" height="750" styleClass="rectangle" />
 
                 <!-- Основной вертикальный контейнер -->
-                <VBox spacing="10" styleClass="main-container">
+                <VBox styleClass="main-container">
                     <!-- Верхний контейнер с текстом и кнопками -->
                     <HBox fx:id="headerBox" styleClass="header-box">
                         <Label fx:id="recentTasksLabel" text="Recent Tasks" styleClass="section-title" />
@@ -34,57 +34,139 @@
                     <!-- Линия под заголовком -->
                     <Line fx:id="recentaskLine" startX="0" endX="350" startY="0" endY="0" styleClass="line" />
 
-                    <!-- Прокручиваемая область -->
-                    <ScrollPane fx:id="mainScrollPane" styleClass="scroll-pane" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
-                        <VBox fx:id="tasksSectionsContainer" spacing="20" styleClass="vbox-scrollable">
-                            <!-- Секция "Yesterday" -->
-                            <VBox fx:id="yesterdaySection" styleClass="task-section">
-                                <Label fx:id="yesterdayLabel" text="Yesterday" styleClass="section-title" alignment="CENTER" />
-                                <VBox fx:id="tasksContainerYesterday" spacing="10" styleClass="vbox-scrollable">
-                                    <HBox spacing="20" alignment="CENTER_LEFT">
-                                        <CheckBox fx:id="checkbox1" />
-                                        <VBox>
-                                            <Label text="Task 1" styleClass="task-name" />
-                                            <Label text="This is the description of Task 1." styleClass="task-description" />
-                                        </VBox>
-                                    </HBox>
+                    <!-- Контейнер для ScrollPane с скругленными углами -->
+                    <StackPane styleClass="rounded-scroll-container">
+                        <ScrollPane fx:id="mainScrollPane" styleClass="scroll-pane" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                            <VBox fx:id="tasksSectionsContainer" spacing="20" styleClass="vbox-scrollable">
+                                <!-- Секция "Yesterday" -->
+                                <VBox fx:id="yesterdaySection" styleClass="task-section">
+                                    <Label fx:id="yesterdayLabel" text="Yesterday" styleClass="section-title" alignment="CENTER" />
+                                    <VBox fx:id="tasksContainerYesterday" spacing="10" styleClass="vbox-scrollable">
+                                        <HBox spacing="20" alignment="CENTER_LEFT">
+                                            <CheckBox fx:id="checkbox1" />
+                                            <VBox>
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <Label text="This is the description of Task 1." styleClass="task-description" />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                    <Line fx:id="yesterdayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
                                 </VBox>
-                                <Line fx:id="yesterdayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
-                            </VBox>
 
-                            <!-- Секция "Today" -->
-                            <VBox fx:id="todaySection" styleClass="task-section">
-                                <Label fx:id="todayLabel" text="Today" styleClass="section-title" alignment="CENTER" />
-                                <VBox fx:id="tasksContainerToday" spacing="10" styleClass="vbox-scrollable">
-                                    <HBox spacing="20" alignment="CENTER_LEFT">
-                                        <CheckBox fx:id="checkbox4" />
-                                        <VBox>
-                                            <Label text="Task 4" styleClass="task-name" />
-                                            <Label text="This is the description of Task 4." styleClass="task-description" />
-                                        </VBox>
-                                    </HBox>
+                                <!-- Секция "Today" -->
+                                <VBox fx:id="todaySection" styleClass="task-section">
+                                    <Label fx:id="todayLabel" text="Today" styleClass="section-title" alignment="CENTER" />
+                                    <VBox fx:id="tasksContainerToday" spacing="10" styleClass="vbox-scrollable">
+                                        <HBox spacing="20" alignment="CENTER_LEFT">
+                                            <CheckBox fx:id="checkbox4" />
+                                            <VBox>
+                                                <Label text="Task 4" styleClass="task-name" />
+                                                <Label text="This is the description of Task 4." styleClass="task-description" />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                    <Line fx:id="todayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
                                 </VBox>
-                                <Line fx:id="todayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
-                            </VBox>
 
-                            <!-- Секция "Tomorrow" -->
-                            <VBox fx:id="tomorrowSection" styleClass="task-section">
-                                <Label fx:id="tomorrowLabel" text="Tomorrow" styleClass="section-title" alignment="CENTER" />
-                                <VBox fx:id="tasksContainerTomorrow" spacing="10" styleClass="vbox-scrollable">
-                                    <HBox spacing="20" alignment="CENTER_LEFT">
-                                        <CheckBox fx:id="checkbox7" />
-                                        <VBox>
-                                            <Label text="Task 7" styleClass="task-name" />
-                                            <Label text="This is the description of Task 7." styleClass="task-description" />
-                                        </VBox>
-                                    </HBox>
+                                <!-- Секция "Tomorrow" -->
+                                <VBox fx:id="tomorrowSection" styleClass="task-section">
+                                    <Label fx:id="tomorrowLabel" text="Tomorrow" styleClass="section-title" alignment="CENTER" />
+                                    <VBox fx:id="tasksContainerTomorrow" spacing="10" styleClass="vbox-scrollable">
+                                        <HBox spacing="20" alignment="CENTER_LEFT">
+                                            <CheckBox fx:id="checkbox7" />
+                                            <VBox>
+                                                <Label text="Task 7" styleClass="task-name" />
+                                                <Label text="This is the description of Task 7." styleClass="task-description" />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
                                 </VBox>
-                                <Line fx:id="tomorrowLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
                             </VBox>
-                        </VBox>
-                    </ScrollPane>
+                        </ScrollPane>
+                    </StackPane>
                 </VBox>
             </StackPane>
         </StackPane>
     </left>
+   <center>
+    <VBox spacing="20" styleClass="center-container" maxWidth="450">
+        <!-- Первый прямоугольник -->
+        <StackPane styleClass="folders-pane" prefWidth="450" prefHeight="230">
+            <Rectangle width="450" height="230" styleClass="rectangle" />
+            <!-- Контейнер для текста и кнопок -->
+            <VBox styleClass="main-container">
+                <HBox styleClass="header-box">
+                    <Label fx:id="foldersLabel" text="Folders" styleClass="section-title" />
+                    <HBox HBox.hgrow="ALWAYS" />
+                    <HBox styleClass="buttons-box">
+                        <Button fx:id="plusButton2" text="+" styleClass="plus-button" />
+                        <Button fx:id="allButton2" text="All >" styleClass="all-button" />
+                    </HBox>
+                </HBox>
+                <!-- Линия под текстом и кнопками -->
+                <Line startX="0" endX="450" startY="0" endY="0" styleClass="line" />
+            </VBox>
+        </StackPane>
+
+        <!-- Второй прямоугольник -->
+        <StackPane styleClass="statistic-pane" prefWidth="450" prefHeight="510">
+            <Rectangle width="450" height="510" styleClass="rectangle" />
+            <!-- Добавь содержимое для второго прямоугольника, если нужно -->
+        </StackPane>
+    </VBox>
+</center>
 </BorderPane>
