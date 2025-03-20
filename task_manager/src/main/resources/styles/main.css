@@ -1,0 +1,152 @@
+/* Общий фон для приложения */
+.root {
+    -fx-background-color: #34495e; /* Темный фон */
+}
+
+/* Белый прямоугольник */
+.rectangle {
+    -fx-fill: #ffffff; /* Белый цвет */
+    -fx-arc-width: 30; /* Скругление углов */
+    -fx-arc-height: 30;
+}
+
+/* Заголовки секций (Yesterday, Today, Tomorrow) */
+.section-title {
+    -fx-font-family: "Arial";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black; /* Черный цвет текста */
+    -fx-padding: 5px 0; /* Отступы сверху и снизу */
+}
+
+/* Основной контейнер, содержащий белый прямоугольник и его содержимое */
+.rectangle-with-content {
+    -fx-translate-x: 10px; /* Сдвиг вправо */
+}
+
+/* Главный вертикальный контейнер внутри белого прямоугольника */
+.main-container {
+    -fx-padding: 20px; /* Внутренние отступы */
+    -fx-spacing: 20px; /* Расстояние между элементами */
+}
+
+/* Верхний блок (текст "Recent Tasks" и кнопки) */
+.header-box {
+    -fx-spacing: 10px; /* Расстояние между элементами */
+    -fx-padding: 10px 20px; /* Внутренние отступы */
+    -fx-alignment: center-left; /* Выравнивание элементов */
+}
+
+/* Заголовок для секции "Recent Tasks" */
+#recentTasksLabel {
+    -fx-padding: -10px 0 0 -8px;
+}
+
+.plus-button {
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-background-radius: 50%; /* Круглая форма */
+    -fx-min-width: 30px; /* Ширина кнопки */
+    -fx-min-height: 30px; /* Высота кнопки */
+    -fx-max-width: 40px; /* Ограничение ширины */
+    -fx-max-height: 40px; /* Ограничение высоты */
+    -fx-font-family: "Arial";
+    -fx-font-size: 18px; /* Размер текста */
+    -fx-font-weight: bold;
+    -fx-text-fill: black; /* Черный цвет текста */
+    -fx-alignment: center; /* Центрирование текста */
+    -fx-padding: 0; /* Убираем лишние отступы */
+    -fx-translate-x:20px;
+}
+
+
+.plus-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Эффект при наведении */
+}
+
+/* Кнопка "All >" */
+.all-button {
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-text-fill: black; /* Черный цвет текста */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-translate-x: 20px;
+}
+
+.all-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Эффект при наведении */
+}
+
+/* Контейнер для секций (Yesterday, Today, Tomorrow) */
+.task-section {
+    -fx-spacing: 10px; /* Расстояние между элементами */
+}
+
+/* Прокрутка задач */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0; /* Убираем отступы */
+}
+
+/* Контейнер задач внутри ScrollPane */
+.vbox-scrollable {
+    -fx-max-width: 350px; /* Ширина контейнера равна ширине прямоугольника */
+    -fx-max-height: 750px; /* Высота контейнера равна высоте прямоугольника */
+    -fx-background-color: transparent; /* Прозрачный фон */
+    -fx-padding: 0; /* Убираем отступы */
+    -fx-traslate-y:150px;
+}
+
+/* Отдельная настройка прокрутки для Tomorrow */
+#scrollPaneTomorrow {
+    -fx-padding: 0 0 30px 0; /* Дополнительный отступ снизу */
+}
+
+#tasksContainerTomorrow {
+    -fx-padding: 0 0 30px 0; /* Отступ снизу для содержимого */
+}
+
+/* Задачи внутри секций */
+.task-name {
+    -fx-font-family: "Arial";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black; /* Черный цвет текста */
+}
+
+.task-description {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50; /* Темно-серый цвет текста */
+}
+
+/* Стиль чекбоксов */
+.task-checkbox {
+    -fx-pref-width: 35px;
+    -fx-pref-height: 35px;
+    -fx-background-color: #2c3e50; /* Темный фон */
+    -fx-background-radius: 5px; /* Скругленные углы */
+    -fx-border-color: #7f8c8d; /* Светло-серая рамка */
+    -fx-border-radius: 5px;
+}
+
+.task-checkbox:hover {
+    -fx-background-color: #34495e; /* Эффект при наведении */
+}
+
+/* Элементы линии, разделяющие секции */
+.line {
+    -fx-stroke: #000000; /* Черная линия */
+    -fx-stroke-width: 2;
+}
+#yesterdayLine{
+    -fx-translate-y: 22px;
+}
+#todayLine{
+    -fx-translate-y: 22px;
+}
+#recentaskLine{
+    -fx-translate-y:-25px;
+    -fx-translate-x:3px;
+}

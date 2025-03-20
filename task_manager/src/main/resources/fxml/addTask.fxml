@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.collections.FXCollections?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.task_manager.View.AddTaskController" spacing="10" alignment="CENTER">
+    <Label text="Add New Task" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+    
+    <!-- Поле для имени задачи -->
+    <TextField fx:id="taskNameField" promptText="Task Name" />
+    
+    <!-- Поле для описания задачи -->
+    <TextField fx:id="taskDescriptionField" promptText="Task Description" />
+    
+    <!-- Поле выбора сложности -->
+    <ComboBox fx:id="difficultyComboBox" />
+    
+    <!-- Поле выбора папки -->
+    <ComboBox fx:id="folderComboBox" />
+    
+    <!-- Поле выбора дедлайна -->
+    <DatePicker fx:id="deadlinePicker" promptText="Deadline" />
+
+    <!-- Поле для ввода времени -->
+    <TextField fx:id="deadlineTimeField" promptText="Time (HH:mm)" />
+
+    <!-- Кнопка для добавления задачи -->
+    <Button text="Add Task" onAction="#addTask" />
+</VBox>

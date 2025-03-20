@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.control.ScrollPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../styles/main.css" fx:controller="com.task_manager.View.MainViewController">
+    <!-- Левая часть -->
+    <left>
+        <StackPane fx:id="leftPane" styleClass="left-pane">
+            <!-- Контейнер для всего содержимого прямоугольника -->
+            <StackPane fx:id="rectangleWithContent" styleClass="rectangle-with-content">
+                <!-- Белый прямоугольник -->
+                <Rectangle fx:id="tasksRectangle" width="350" height="750" styleClass="rectangle" />
+
+                <!-- Основной вертикальный контейнер -->
+                <VBox spacing="10" styleClass="main-container">
+                    <!-- Верхний контейнер с текстом и кнопками -->
+                    <HBox fx:id="headerBox" styleClass="header-box">
+                        <Label fx:id="recentTasksLabel" text="Recent Tasks" styleClass="section-title" />
+                        <HBox HBox.hgrow="ALWAYS" />
+                        <HBox fx:id="buttonsBox" styleClass="buttons-box">
+                            <Button fx:id="plusButton" text="+" styleClass="plus-button" onAction="#showAddTaskDialog"/>
+                            <Button fx:id="allButton" text="All >" styleClass="all-button" />
+                        </HBox>
+                    </HBox>
+
+                    <!-- Линия под заголовком -->
+                    <Line fx:id="recentaskLine" startX="0" endX="350" startY="0" endY="0" styleClass="line" />
+
+                    <!-- Прокручиваемая область -->
+                    <ScrollPane fx:id="mainScrollPane" styleClass="scroll-pane" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                        <VBox fx:id="tasksSectionsContainer" spacing="20" styleClass="vbox-scrollable">
+                            <!-- Секция "Yesterday" -->
+                            <VBox fx:id="yesterdaySection" styleClass="task-section">
+                                <Label fx:id="yesterdayLabel" text="Yesterday" styleClass="section-title" alignment="CENTER" />
+                                <VBox fx:id="tasksContainerYesterday" spacing="10" styleClass="vbox-scrollable">
+                                    <HBox spacing="20" alignment="CENTER_LEFT">
+                                        <CheckBox fx:id="checkbox1" />
+                                        <VBox>
+                                            <Label text="Task 1" styleClass="task-name" />
+                                            <Label text="This is the description of Task 1." styleClass="task-description" />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                                <Line fx:id="yesterdayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
+                            </VBox>
+
+                            <!-- Секция "Today" -->
+                            <VBox fx:id="todaySection" styleClass="task-section">
+                                <Label fx:id="todayLabel" text="Today" styleClass="section-title" alignment="CENTER" />
+                                <VBox fx:id="tasksContainerToday" spacing="10" styleClass="vbox-scrollable">
+                                    <HBox spacing="20" alignment="CENTER_LEFT">
+                                        <CheckBox fx:id="checkbox4" />
+                                        <VBox>
+                                            <Label text="Task 4" styleClass="task-name" />
+                                            <Label text="This is the description of Task 4." styleClass="task-description" />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                                <Line fx:id="todayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
+                            </VBox>
+
+                            <!-- Секция "Tomorrow" -->
+                            <VBox fx:id="tomorrowSection" styleClass="task-section">
+                                <Label fx:id="tomorrowLabel" text="Tomorrow" styleClass="section-title" alignment="CENTER" />
+                                <VBox fx:id="tasksContainerTomorrow" spacing="10" styleClass="vbox-scrollable">
+                                    <HBox spacing="20" alignment="CENTER_LEFT">
+                                        <CheckBox fx:id="checkbox7" />
+                                        <VBox>
+                                            <Label text="Task 7" styleClass="task-name" />
+                                            <Label text="This is the description of Task 7." styleClass="task-description" />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                                <Line fx:id="tomorrowLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </VBox>
+            </StackPane>
+        </StackPane>
+    </left>
+</BorderPane>
