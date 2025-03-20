@@ -2,6 +2,8 @@ package com.task_manager.Module;
 
 import com.task_manager.Utils.DataAccessException;
 import com.task_manager.Utils.Database;
+import com.task_manager.Utils.Priority;
+import com.task_manager.Utils.Status;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,18 +25,18 @@ public class TaskRepositoryImpl implements TaskRepository {
         return INSTANCE;
     }
 
-    private void createTable() {
+    private void createTable() throws DataAccessException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS tasks (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     title TEXT NOT NULL,
                     description TEXT,
                     category TEXT,
-                    priority TEXT,
-                    status TEXT,
-                    due_date DATETIME,
+                    priority TEXT CHECK (priority IN ('HIGH', 'MEDIUM', 'LOW')),
+                    status TEXT CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED')),
+                    due_date DATETIME NOT NULL,
                     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    updated_at DATETIME
+                    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
                 );
                 """;
 
@@ -46,7 +48,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         }
     }
 
-    public List<Task> getAllTasks() {
+    public List<Task> getAllTasks() throws DataAccessException {
         List<Task> tasks = new ArrayList<>();
         String sql = "SELECT * FROM tasks";
 
@@ -59,8 +61,8 @@ public class TaskRepositoryImpl implements TaskRepository {
                         rs.getString("title"),
                         rs.getString("description"),
                         rs.getString("category"),
-                        rs.getString("priority"),
-                        rs.getString("status"),
+                        Priority.valueOf(rs.getString("priority")),
+                        Status.valueOf(rs.getString("status")),
                         rs.getTimestamp("due_date").toLocalDateTime(),
                         rs.getTimestamp("created_at").toLocalDateTime(),
                         rs.getTimestamp("updated_at").toLocalDateTime()
@@ -73,8 +75,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         return tasks;
     }
 
-    public Task getTaskById(int taskId) {
-        Task task = null;
+    public Task getTaskById(int taskId) throws DataAccessException {
         String sql = "SELECT * FROM tasks WHERE id = ?";
 
         try (Connection conn = Database.getConnection();
@@ -83,13 +84,13 @@ public class TaskRepositoryImpl implements TaskRepository {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                task = new Task(
+                return new Task(
                         rs.getInt("id"),
                         rs.getString("title"),
                         rs.getString("description"),
                         rs.getString("category"),
-                        rs.getString("priority"),
-                        rs.getString("status"),
+                        Priority.valueOf(rs.getString("priority")),
+                        Status.valueOf(rs.getString("status")),
                         rs.getTimestamp("due_date").toLocalDateTime(),
                         rs.getTimestamp("created_at").toLocalDateTime(),
                         rs.getTimestamp("updated_at").toLocalDateTime()
@@ -98,13 +99,13 @@ public class TaskRepositoryImpl implements TaskRepository {
         } catch (SQLException e) {
             throw new DataAccessException("Ошибка при извлечении задачи по ID", e);
         }
-        return task;
+        return null;
     }
 
-    public void addTask(Task task) {
+    public void addTask(Task task) throws DataAccessException {
         String sql = """
-                INSERT INTO tasks (title, description, category, priority, status, due_date, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?);
+                INSERT INTO tasks (title, description, category, priority, status, due_date)
+                VALUES (?, ?, ?, ?, ?, ?);
                 """;
 
         try (Connection conn = Database.getConnection();
@@ -112,10 +113,9 @@ public class TaskRepositoryImpl implements TaskRepository {
             pstmt.setString(1, task.getTitle());
             pstmt.setString(2, task.getDescription());
             pstmt.setString(3, task.getCategory());
-            pstmt.setString(4, task.getPriority());
-            pstmt.setString(5, task.getStatus());
+            pstmt.setString(4, task.getPriority().toString());
+            pstmt.setString(5, task.getStatus().toString());
             pstmt.setTimestamp(6, Timestamp.valueOf(task.getDue_date()));
-            pstmt.setTimestamp(7, Timestamp.valueOf(task.getUpdated_at()));
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -141,8 +141,8 @@ public class TaskRepositoryImpl implements TaskRepository {
             pstmt.setString(1, task.getTitle());
             pstmt.setString(2, task.getDescription());
             pstmt.setString(3, task.getCategory());
-            pstmt.setString(4, task.getPriority());
-            pstmt.setString(5, task.getStatus());
+            pstmt.setString(4, task.getPriority().toString());
+            pstmt.setString(5, task.getStatus().toString());
             pstmt.setTimestamp(6, Timestamp.valueOf(task.getDue_date()));
             pstmt.setTimestamp(7, Timestamp.valueOf(task.getUpdated_at()));
             pstmt.setInt(8, task.getId());
