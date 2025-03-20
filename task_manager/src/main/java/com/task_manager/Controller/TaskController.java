@@ -2,6 +2,7 @@ package com.task_manager.Controller;
 
 import com.task_manager.Module.Task;
 import com.task_manager.Module.TaskRepository;
+import com.task_manager.Module.TaskRepositoryImpl;
 import com.task_manager.View.TaskView;
 
 import java.time.LocalDateTime;
@@ -14,16 +15,16 @@ import java.util.List;
 public class TaskController {
 
     private final TaskRepository taskRepository;
-    private TaskView taskView;
+    //private final TaskView taskView;
 
-    public TaskController(TaskView taskView) {
-        this.taskRepository = new TaskRepository();
-        this.taskView = taskView;
+    public TaskController(TaskRepository taskRepository, TaskView taskView) {
+        this.taskRepository = taskRepository;
+        //this.taskView = taskView;
     }
 
     // dbg
-    public TaskController() {
-        this.taskRepository = new TaskRepository();
+    public TaskController(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
     }
 
     public List<Task> getAllTasks() {
@@ -57,7 +58,8 @@ public class TaskController {
     }
 
     public boolean deleteTask(int taskId) {
-        return taskRepository.deleteTask(taskId);
+        taskRepository.deleteTask(taskId);
+        return true;
         // updateView();
     }
 

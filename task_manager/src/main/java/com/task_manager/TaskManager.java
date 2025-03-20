@@ -2,6 +2,8 @@ package com.task_manager;
 
 import com.task_manager.Controller.TaskController;
 import com.task_manager.Module.Task;
+import com.task_manager.Module.TaskRepository;
+import com.task_manager.Module.TaskRepositoryImpl;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -99,7 +101,8 @@ public class TaskManager {
     }
 
     public static void main(String[] args) {
-        TaskController taskController = new TaskController();
+        TaskRepository taskRepository = TaskRepositoryImpl.getInstance();
+        TaskController taskController = new TaskController(taskRepository);
 
         System.out.println();
         System.out.println("TaskManager");
