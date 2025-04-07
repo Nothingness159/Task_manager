@@ -1,15 +1,13 @@
 package com.task_manager.View;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class AddTaskController {
 
@@ -28,48 +26,101 @@ public class AddTaskController {
     @FXML
     private Button addTaskButton;
 
-    private MainViewController mainViewController; // Ссылка на контроллер главного окна
+    private MainViewController mainViewController;
 
     @FXML
     public void initialize() {
-        difficultyComboBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
-        folderComboBox.setItems(FXCollections.observableArrayList("Work", "Personal", "Urgent"));
+        if (difficultyComboBox != null) {
+            difficultyComboBox.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
+        }
+
+        if (folderComboBox != null) {
+            folderComboBox.setItems(FXCollections.observableArrayList("Work", "Personal", "Urgent"));
+        }
+
+        // Установим текущую дату по умолчанию
+        if (deadlineDatePicker != null) {
+            deadlineDatePicker.setValue(LocalDate.now());
+        }
+
+        // Подсказка по формату времени
+        if (deadlineTimeField != null) {
+            deadlineTimeField.setPromptText("HH:mm");
+        }
     }
 
-    // Устанавливаем ссылку на контроллер главного окна
     public void setMainViewController(MainViewController controller) {
         this.mainViewController = controller;
     }
 
-    // Метод для добавления задачи
     @FXML
     private void addTask() {
-        String taskName = taskNameField.getText();
-        String taskDescription = taskDescriptionField.getText();
-        String difficulty = difficultyComboBox.getValue();
-        String folder = folderComboBox.getValue();
-        LocalDate selectedDate = deadlineDatePicker.getValue();
-        String timeString = deadlineTimeField.getText();
+        if (!validateFields())
+            return;
+
+        try {
+            LocalDateTime deadline = parseDeadline();
+
+            if (mainViewController != null) {
+                mainViewController.addTask(
+                        taskNameField.getText().trim(),
+                        taskDescriptionField.getText().trim(),
+                        deadline,
+                        difficultyComboBox.getValue(),
+                        folderComboBox.getValue());
+
+                mainViewController.showAddTaskDialog();
+                clearFields();
+            }
+
+        } catch (DateTimeParseException e) {
+            showAlert("Invalid Time Format", "Please enter time in HH:mm format.");
+        }
+    }
+
+    @FXML
+    private void cancelTask() {
+        clearFields();
+
+        if (mainViewController != null) {
+            mainViewController.showAddTaskDialog();
+        }
+    }
+
+    private boolean validateFields() {
+        if (taskNameField.getText().isBlank()
+                || deadlineDatePicker.getValue() == null
+                || deadlineTimeField.getText().isBlank()) {
+            showAlert("Missing Information", "Please fill in the task name, date, and time.");
+            return false;
+        }
+        return true;
+    }
+
+    private LocalDateTime parseDeadline() throws DateTimeParseException {
+        LocalDate date = deadlineDatePicker.getValue();
+        String timeText = deadlineTimeField.getText().trim();
 
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        try {
-            if (taskName != null && !taskName.isEmpty() && selectedDate != null && timeString != null
-                    && !timeString.isEmpty()) {
-                LocalDateTime deadline = LocalDateTime.of(selectedDate,
-                        LocalDateTime.parse(timeString, timeFormatter).toLocalTime());
+        LocalTime time = LocalTime.parse(timeText, timeFormatter);
 
-                if (mainViewController != null) {
-                    mainViewController.addTask(taskName, taskDescription, deadline, difficulty, folder);
-                }
+        return LocalDateTime.of(date, time);
+    }
 
-                // Закрытие окна добавления задачи
-                Stage stage = (Stage) addTaskButton.getScene().getWindow();
-                stage.close();
-            } else {
-                System.out.println("Please fill all fields correctly.");
-            }
-        } catch (Exception e) {
-            System.out.println("Invalid time format. Please enter time in HH:mm format.");
-        }
+    private void clearFields() {
+        taskNameField.clear();
+        taskDescriptionField.clear();
+        deadlineDatePicker.setValue(LocalDate.now());
+        deadlineTimeField.clear();
+        difficultyComboBox.getSelectionModel().clearSelection();
+        folderComboBox.getSelectionModel().clearSelection();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

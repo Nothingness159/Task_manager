@@ -1,190 +1,580 @@
-/* Общие стили для приложения */
-.root {
-    -fx-background-color: #34495e; /* Темный фон */
+/* ==============================
+   ОСНОВНЫЕ СТИЛИ И ПЕРЕМЕННЫЕ
+   ============================== */
+   .root {
+    -fx-background-color: #34495e;
 }
 
-/* Стили для прямоугольников */
+/* ==============================
+   ОБЩИЕ КОМПОНЕНТЫ
+   ============================== */
+/* Линии разделения */
+.line {
+    -fx-stroke: #000000;
+    -fx-stroke-width: 2;
+}
+
+/* Заголовки секций */
+.section-title {
+    -fx-font-family: "Roboto mono";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 5px 0;
+}
+
+/* Прямоугольники */
 .rectangle {
-    -fx-fill: #ffffff; /* Белый цвет */
-    -fx-arc-width: 40; /* Скругление углов */
+    -fx-fill: #ffffff;
+    -fx-arc-width: 40;
     -fx-arc-height: 40;
 }
 
-/* Стили для заголовков */
-.section-title {
-    -fx-font-family: "Arial";
-    -fx-font-size: 18px;
+/* Кнопки */
+.add-button, .view-all-button {
+    -fx-background-color: transparent;
     -fx-font-weight: bold;
-    -fx-text-fill: black; /* Черный цвет текста */
-    -fx-padding: 5px 0; /* Отступы сверху и снизу */
+    -fx-text-fill: #333;
+    -fx-padding: 0;
+    -fx-transition: all 0.2s ease;
 }
 
-/* Стили для контейнеров */
-.rectangle-with-content {
-    -fx-translate-x: 10px; /* Сдвиг вправо */
+.add-button {
+    -fx-font-size: 20px;
 }
 
-.main-container {
-    -fx-padding: 20px; /* Внутренние отступы */
+.view-all-button {
+    -fx-font-size: 16px;
 }
 
-.header-box {
-    -fx-spacing: 10px; /* Расстояние между элементами */
-    -fx-alignment: center-left; /* Выравнивание элементов */
+/* Эффекты для кнопок */
+.add-button:hover, .view-all-button:hover {
+    -fx-text-fill: #000;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0, 0, 1);
 }
 
-
-.task-section {
-    -fx-spacing: 10px; /* Расстояние между элементами */
+.add-button:pressed, .view-all-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
-.center-container {
-    -fx-translate-x: -290px;
-    -fx-translate-y: 15px;
-}
-
-/* Стили для кнопок */
-.plus-button {
-    -fx-background-color: transparent; /* Прозрачный фон */
-    -fx-background-radius: 50%; /* Круглая форма */
-    -fx-min-width: 30px; /* Ширина кнопки */
-    -fx-min-height: 30px; /* Высота кнопки */
-    -fx-max-width: 40px; /* Ограничение ширины */
-    -fx-max-height: 40px; /* Ограничение высоты */
-    -fx-font-family: "Arial";
-    -fx-font-size: 18px; /* Размер текста */
-    -fx-font-weight: bold;
-    -fx-text-fill: black; /* Черный цвет текста */
-    -fx-alignment: center; /* Центрирование текста */
-    -fx-padding: 0; /* Убираем лишние отступы */
-    -fx-translate-x: 20px;
-}
-
-.plus-button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.1); /* Эффект при наведении */
-}
-
-.all-button {
-    -fx-background-color: transparent; /* Прозрачный фон */
-    -fx-text-fill: black; /* Черный цвет текста */
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-padding: 5px 10px;
-    -fx-translate-x: 20px;
-}
-
-.all-button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.1); /* Эффект при наведении */
-}
-
-/* Стили для ScrollPane */
-.scroll-pane {
+/* ==============================
+   СКРОЛЛПЕЙНЫ (ОБЩИЕ СТИЛИ)
+   ============================== */
+.scroll-pane, .folders-scroll, .notes-scroll {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-padding: 0;
-    -fx-fit-to-width: true;
-    -fx-fit-to-height: true;
-    -fx-max-width: 340px;
-    -fx-translate-y: -10px; /* Поднимаем ScrollPane вверх */
-    -fx-hbar-policy: never; /* Скрываем горизонтальный скроллбар */
-    -fx-vbar-policy: never; /* Скрываем вертикальный скроллбар */
+}
+
+.scroll-pane .viewport, .folders-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ==============================
+   ЧЕКБОКСЫ
+   ============================== */
+.check-box {
+    -fx-padding: 5px;
+}
+
+/* Коробка чекбокса */
+.check-box .box {
+    -fx-background-color: white;
+    -fx-background-radius: 3px;
+    -fx-border-color: #262929;
+    -fx-border-radius: 3px;
+    -fx-border-width: 2px;
+    -fx-padding: 3px;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+    -fx-max-width: 18px;
+    -fx-max-height: 18px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 3, 0, 0, 1);
+    -fx-transition: all 0.2s ease;
+}
+
+/* Галочка внутри */
+.check-box .mark {
+    -fx-background-color: transparent;
+    -fx-shape: "M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z";
+    -fx-scale-x: 0.7;
+    -fx-scale-y: 0.7;
+    -fx-translate-y: 1px;
+}
+
+/* Состояние при нажатии */
+.check-box:pressed .box {
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
+
+/* Состояние "выбран" */
+.check-box:selected .box {
+    -fx-background-color: #000000;
+    -fx-border-color: #000000;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+/* Состояние "выбран" при наведении */
+.check-box:selected:hover .box {
+    -fx-background-color: #000000;
+    -fx-border-color: #000000;
+    -fx-effect: dropshadow(gaussian, rgba(41,128,185,0.3), 5, 0, 0, 1);
+}
+
+/* Анимация при выборе */
+.check-box:selected .box {
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.3), 7, 0, 0, 1);
+}
+
+/* Специальные стили для чекбоксов в задачах */
+.task-section .check-box {
+    -fx-padding: 10px 5px;
+}
+
+.task-section .check-box .box {
+    -fx-min-width: 22px;
+    -fx-min-height: 22px;
+    -fx-max-width: 22px;
+    -fx-max-height: 22px;
+}
+
+/* Для задач, которые выполнены */
+.task-completed .task-name {
+    -fx-strikethrough: true;
+    -fx-text-fill: #95a5a6;
+}
+
+.task-completed .task-description {
+    -fx-text-fill: #bdc3c7;
+}
+
+/* ==============================
+   RECENT TASKS SECTION
+   ============================== */
+.left-pane {
+    -fx-padding: 10px;
+}
+
+.rectangle-with-content {
+    -fx-translate-x: 10px;
+}
+
+.main-container {
+    -fx-padding: 20px;
+}
+
+.header-box {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 5px 0;
+}
+
+.task-section {
+    -fx-spacing: 10px;
+}
+
+.buttons-box {
+    -fx-translate-x: -10px;
+    -fx-translate-y: 5px;
 }
 
 .rounded-scroll-container {
     -fx-background-color: transparent;
-    -fx-background-radius: 0 0 30 30;
-    -fx-border-radius: 0 0 30 30;
-    -fx-border-color: transparent;
-    -fx-padding: 0;
-    -fx-clip: true;
+    -fx-clip: true; /* Важно для обрезки контента внутри скруглённого контейнера */
 }
 
 .vbox-scrollable {
-    -fx-max-width: 350px; /* Ширина контейнера равна ширине прямоугольника */
-    -fx-background-color: transparent; /* Прозрачный фон */
-    -fx-padding: 0; /* Убираем отступы */
-    -fx-spacing: 10px; /* Расстояние между элементами */
+    -fx-background-color: transparent;
+    /* Уменьшаем правый отступ, чтобы контент не "замыливался" */
+    -fx-padding: 0px 5px 10px 0px; 
 }
 
-.folders-pane {
-    -fx-background-color: white; /* Белый фон */
-    -fx-background-radius: 30; /* Скругление углов */
-    -fx-border-radius: 30;
-    -fx-border-color: transparent;
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-max-height: 700px;
+    -fx-pref-height: 700px;
+    -fx-pref-width: 350px;
+    -fx-max-width: 350px;
+    -fx-translate-y:10px;
+}
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
 }
 
-.statistic-pane {
-    -fx-background-color: white; /* Белый фон */
-    -fx-background-radius: 30; /* Скругление углов */
-    -fx-border-radius: 30;
-    -fx-border-color: transparent;
-    -fx-padding: 0;
-    -fx-max-height: 510px; /* Ограничиваем высоту */
+.scroll-pane .vbox-scrollable {
+    -fx-background-color: transparent;
+    -fx-spacing: 15px;
+    -fx-padding: 0px 15px 10px 0px; /* Отступ справа для полосы прокрутки */
 }
 
-.folders-container {
-    -fx-translate-x: 400px;
+/* Стили для элементов внутри заметок */
+.scroll-pane .task-name {
+    -fx-padding: 5px 0 2px 0;
 }
 
-#foldersLabel {
-    -fx-translate-x: -55px;
+.scroll-pane.task-description {
+    -fx-padding: 0 0 8px 0;
+    -fx-wrap-text: true;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 3;
 }
 
-.foldersButton {
-    -fx-translate-x: 205px;
-}
 
 /* Стили для задач */
 .task-name {
     -fx-font-family: "Arial";
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: black; /* Черный цвет текста */
+    -fx-text-fill: black;
 }
 
 .task-description {
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
-    -fx-text-fill: #2c3e50; /* Темно-серый цвет текста */
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text:true;
 }
 
-/* Стили для чекбоксов */
-.task-checkbox {
-    -fx-pref-width: 35px;
-    -fx-pref-height: 35px;
-    -fx-background-color: #2c3e50; /* Темный фон */
-    -fx-background-radius: 5px; /* Скругленные углы */
-    -fx-border-color: #7f8c8d; /* Светло-серая рамка */
-    -fx-border-radius: 5px;
+/* Стили для контейнеров задач */
+.task-container {
+    -fx-padding: 8px 5px;
+    -fx-background-radius: 5px;
+    -fx-transition: all 0.2s ease;
 }
 
-.task-checkbox:hover {
-    -fx-background-color: #34495e; /* Эффект при наведении */
+.task-container:hover {
+    -fx-background-color: rgba(131, 131, 131, 0.1);
 }
 
-/* Стили для линий */
-.line {
-    -fx-stroke: #000000; /* Черная линия */
-    -fx-stroke-width: 2;
+.center{
+    -fx-alignment: center;
 }
 
-#yesterdayLine {
+/* Специфические позиционирования */
+#yesterdayLine, #todayLine {
     -fx-translate-y: 15px;
 }
 
-#todayLine {
-    -fx-translate-y: 15px;
+#recentaskLine {
+    -fx-translate-y: 0px;
 }
 
 #lastLine {
     -fx-translate-y: -30px;
 }
 
-#recentaskLine {
-    -fx-translate-y: -10px;
-}
-
 #yesterdaySection {
     -fx-translate-y: -5px;
 }
+
+#recentTasksLabel {
+    -fx-translate-x: 10px;
+    -fx-translate-y: 5px;
+}
+
+#plusButton {
+    -fx-translate-x: -15px;
+}
+#plusButton1 {
+    -fx-translate-x: -15px;
+}
+
+#allButton {
+    -fx-translate-x: 3px;
+    -fx-translate-y: 4px;
+}
+
+/* ==============================
+   ЦЕНТРАЛЬНЫЙ КОНТЕЙНЕР
+   ============================== */
+.center-container {
+    -fx-translate-x: -290px;
+    -fx-translate-y: 15px;
+}
+
+/* ==============================
+   FOLDERS PANE
+   ============================== */
+.folders-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+/* Контент папок */
+.folders-content-container {
+    -fx-padding: 20px 25px;
+    -fx-alignment: top-center;
+}
+
+/* Заголовок папок */
+.folders-header {
+    -fx-padding: 0 0 15px 0;
+    -fx-translate-y: -13px;
+}
+
+/* Скроллпейн для папок */
+.folders-scroll {
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+    -fx-pref-width: 400px;
+    -fx-max-height: 190px;
+    -fx-pref-height: 190px;
+    -fx-min-height: 190px;
+}
+
+/* Скрываем вертикальный скролл */
+.folders-scroll .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-padding: -7;
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+    -fx-background-color: transparent;
+}
+
+/* Стилизация горизонтального скролла */
+.folders-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-padding: 5px 0px 0px 0px;
+    -fx-opacity: 1;
+}
+
+.folders-scroll .scroll-bar:horizontal .track {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 10;
+}
+
+.folders-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 10;
+}
+
+.folders-scroll .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #aaaaaa;
+}
+
+.folders-scroll .scroll-bar:horizontal .thumb:pressed {
+    -fx-background-color: #888888;
+}
+
+.folders-scroll .scroll-bar .increment-button,
+.folders-scroll .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 10 0;
+}
+
+.folders-scroll .scroll-bar .increment-arrow,
+.folders-scroll .scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+/* Список папок */
+.folders-list {
+    -fx-padding: 10px 5px;
+    -fx-alignment: center-left;
+    -fx-min-width: 700px;
+    -fx-max-height: 150px;
+    -fx-pref-height: 150px;
+    -fx-min-height: 150px;
+    -fx-spacing: 30;
+}
+
+/* Стили папок */
+.folder-button {
+    -fx-content-display: GRAPHIC_ONLY;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.folder-bg {
+    -fx-arc-width: 45;
+    -fx-arc-height: 45;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+    -fx-transition: all 0.3s ease;
+}
+
+.folder-icon {
+    -fx-translate-y: -15;
+    -fx-transition: all 0.3s ease;
+}
+
+.folder-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-translate-y: 25px;
+    -fx-transition: all 0.3s ease;
+}
+
+/* Эффекты при наведении и нажатии для папок */
+.folder-button:hover .folder-bg {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.folder-button:hover .folder-icon {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.folder-button:hover .folder-label {
+    -fx-text-fill: #000;
+}
+
+.add-folder-button:hover {
+    -fx-text-fill: #000;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+/* Эффект при нажатии */
+.folder-button:pressed .folder-bg {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.add-folder-button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+/* ==============================
+   NOTES PANE & SCROLLPANE
+   ============================== */
+.notes-scroll-container {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 30 30;
+    -fx-border-radius: 0 0 30 30;
+    -fx-padding: 0;
+    -fx-clip: true;
+}
+
+.notes-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-max-height: 390px;
+    -fx-pref-height: 390px;
+    -fx-pref-width: 435px;
+    -fx-max-width: 435px;
+    -fx-translate-x: 30px;
+}
+.notes-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Стиль для содержимого заметок */
+.notes-scroll .vbox-scrollable {
+    -fx-background-color: transparent;
+    -fx-spacing: 15px;
+    -fx-padding: 0px 15px 10px 0px; /* Отступ справа для полосы прокрутки */
+}
+
+/* Стили для элементов внутри заметок */
+.notes-scroll .task-name {
+    -fx-padding: 5px 0 2px 0;
+}
+
+.notes-scroll .task-description {
+    -fx-padding: 0 0 8px 0;
+    -fx-wrap-text: true;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 3;
+}
+
+.notes-button {
+    -fx-translate-x: 275px;
+    -fx-spacing: 25px;
+    -fx-translate-y: 7px;
+}
+
+#notesLabel {
+    -fx-padding: 12px 0 0 27px;
+}
+
+/* ==============================
+   СТИЛИ ДЛЯ ИКОНКИ ЧАСОВ И ДЕДЛАЙНА
+   ============================== */
+.clock-icon {
+    -fx-cursor: hand;
+}
+
+.task-deadline {
+    -fx-font-size: 12px;
+    -fx-text-fill: gray;
+    -fx-visibility: hidden;
+}
+
+.task-deadline.visible {
+    -fx-visibility: visible;
+}
+
+.clock-container {
+    -fx-translate-x: 5px;
+}
+
+
+/* ==============================
+   СТИЛИ ДЛЯ ВЫПАДАЮЩЕЙ ПАНЕЛИ ДОБАВЛЕНИЯ ЗАДАЧИ
+   ============================== */
+.add-task-pane {
+    -fx-background-color: #000;
+    -fx-background-radius: 25px;
+    -fx-padding: 15px;
+    -fx-max-width: 250px;
+    -fx-min-width: 250px;
+    -fx-pref-width: 250px;
+    -fx-max-height: 350px;
+    -fx-min-height: 350px;
+    -fx-pref-height: 350px;
+}
+
+#AddLabel {
+    -fx-text-fill: #ffffff;
+}
+
+/* Стили для полей ввода в форме */
+.task-input {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5px;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+}
+
+.task-input:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.2), 3, 0, 0, 1);
+}
+
+/* Кнопки формы */
+.confirm-button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-weight: bold;
+    -fx-background-radius: 35px;
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #2980b9;
+}
+

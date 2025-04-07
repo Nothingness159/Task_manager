@@ -1,0 +1,250 @@
+    <?fxml version="1.0" encoding="UTF-8"?>
+    <?import javafx.scene.layout.BorderPane?>
+    <?import javafx.scene.layout.StackPane?>
+    <?import javafx.scene.layout.Pane?>
+    <?import javafx.scene.layout.HBox?>
+    <?import javafx.scene.layout.VBox?>
+    <?import javafx.scene.control.Label?>
+    <?import javafx.scene.control.Button?>
+    <?import javafx.scene.image.ImageView?>
+    <?import javafx.scene.image.Image?>
+    <?import javafx.scene.control.CheckBox?>
+    <?import javafx.scene.shape.Rectangle?>
+    <?import javafx.scene.text.Text?>
+    <?import javafx.scene.text.TextFlow?>
+    <?import javafx.scene.layout.GridPane?>
+    <?import javafx.scene.shape.Line?>
+    <?import javafx.scene.layout.Region?>
+    <?import javafx.scene.shape.SVGPath?>
+    <?import javafx.scene.control.ScrollPane?>
+
+    <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../styles/main.css" fx:controller="com.task_manager.View.MainViewController">
+        <!-- Левая часть -->
+        <left>
+            <!-- Контейнер для всего содержимого прямоугольника -->
+            <StackPane fx:id="rectangleWithContent" styleClass="rectangle-with-content" maxWidth="350">
+                <!-- Белый прямоугольник -->
+                <Rectangle fx:id="tasksRectangle" width="350" height="750" styleClass="rectangle" />
+
+                <!-- Верхний контейнер с текстом и кнопками -->
+                <HBox fx:id="headerBox" styleClass="header-box">
+                    <Label fx:id="recentTasksLabel" text="Recent Tasks" styleClass="section-title" />
+                    <HBox HBox.hgrow="ALWAYS" />
+                    <HBox fx:id="buttonsBox" styleClass="buttons-box">
+                        <Button fx:id="plusButton" text="+" styleClass="add-button" onAction="#showAddTaskDialog" />
+                        <Button fx:id="allButton" text="All >" styleClass="view-all-button" onAction="#showAllTask" />
+                    </HBox>
+                </HBox> 
+                <!-- Линия под заголовком -->
+                <Line fx:id="recentaskLine" startX="0" endX="350" styleClass="line" />
+                <StackPane styleClass="notes-scroll-container">
+                    <ScrollPane styleClass="notes-scroll" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                        <VBox styleClass="vbox-scrollable">
+                            <!-- Секция "Yesterday" -->
+                            <VBox fx:id="yesterdaySection" styleClass="task-section">
+                                <HBox styleClass="center">
+                                    <Label fx:id="yesterdayLabel" text="Yesterday" styleClass="section-title" />
+                                </HBox>
+                                <VBox fx:id="tasksContainerYesterday" styleClass="vbox-scrollable">
+                                    <HBox alignment="CENTER_LEFT" styleClass="task-container">
+                                        <CheckBox fx:id="checkbox1" />
+                                        <VBox>
+                                            <HBox>
+                                                <Label text="Task 1" styleClass="task-name" />
+                                                <HBox styleClass="clock-container" spacing="5" alignment="CENTER_LEFT">
+                                                    <ImageView fx:id="clockIcon1" fitWidth="16" fitHeight="16" />
+                                                    <Label fx:id="deadlineLabel1" text="25.01.2025" visible="false" />
+                                                </HBox>
+                                            </HBox>
+                                            <Label text="This is the description of Task 1." styleClass="task-description" />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                                <Line fx:id="yesterdayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
+                            </VBox>
+
+                            <!-- Секция "Today" -->
+                            <VBox fx:id="todaySection" styleClass="task-section">
+                                <HBox styleClass="center">
+                                    <Label fx:id="todayLabel" text="Today" styleClass="section-title" alignment="CENTER" />
+                                </HBox>
+                                <VBox fx:id="tasksContainerToday" spacing="10" styleClass="vbox-scrollable">
+                                    <HBox spacing="20" alignment="CENTER_LEFT" styleClass="task-container">
+                                        <CheckBox fx:id="checkbox4" />
+                                        <VBox>
+                                            <HBox>
+                                                <Label text="Task 4" styleClass="task-name" />
+                                                <HBox styleClass="clock-container" spacing="5" alignment="CENTER_LEFT">
+                                                    <ImageView fx:id="clockIcon2" fitWidth="16" fitHeight="16" />
+                                                    <Label fx:id="deadlineLabel2" text="25.01.2025" visible="false" />
+                                                </HBox>
+                                            </HBox>
+                                            <Label text="This is the description of Task 4." styleClass="task-description" />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                                <Line fx:id="todayLine" startX="0" endX="350" strokeWidth="2" styleClass="line" />
+                            </VBox>
+
+                            <!-- Секция "Tomorrow" -->
+                            <VBox fx:id="tomorrowSection" styleClass="task-section">
+                                <HBox styleClass="center">
+                                    <Label fx:id="tomorrowLabel" text="Tomorrow" styleClass="section-title" alignment="CENTER" />
+                                </HBox>
+                                <VBox fx:id="tasksContainerTomorrow" spacing="10" styleClass="vbox-scrollable">
+                                    <HBox spacing="20" alignment="CENTER_LEFT" styleClass="task-container">
+                                        <CheckBox fx:id="checkbox7" />
+                                        <VBox>
+                                            <HBox>
+                                                <Label text="Task 7" styleClass="task-name" />
+                                                <HBox styleClass="clock-container" spacing="5" alignment="CENTER_LEFT">
+                                                    <ImageView fx:id="clockIcon3" fitWidth="16" fitHeight="16" />
+                                                    <Label fx:id="deadlineLabel3" text="25.01.2025" visible="false" />
+                                                </HBox>
+                                            </HBox>
+                                            <Label text="This is the description of Task 7." styleClass="task-description" />
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </StackPane>
+            </StackPane>
+        </left>
+        <center>
+            <VBox spacing="20" styleClass="center-container" maxWidth="450">
+                <StackPane styleClass="folders-pane" prefWidth="450" prefHeight="200">
+                    <Rectangle width="450" height="200" styleClass="rectangle" arcWidth="30" arcHeight="30"/>
+                    
+                    <VBox styleClass="folders-content-container" spacing="10">
+                        <!-- Заголовок -->
+                        <HBox styleClass="folders-header" alignment="CENTER_LEFT">
+                            <Label text="Folders" styleClass="section-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <HBox styleClass="folders-buttons" spacing="10">
+                                <Button fx:id="plusButton1" text="+" styleClass="add-button"/>
+                                <Button fx:id="allButton" text="All >" styleClass="view-all-button"/>
+                            </HBox>
+                        </HBox>
+                        
+                        <!-- Контейнер для папок с горизонтальным скроллом -->
+                        <ScrollPane fx:id="foldersScroll" 
+                                styleClass="folders-scroll" 
+                                hbarPolicy="ALWAYS" 
+                                vbarPolicy="NEVER" 
+                                fitToWidth="false"
+                                fitToHeight="true"
+                                pannable="true">
+                            <content>
+                                <HBox fx:id="foldersList" 
+                                    styleClass="folders-list" 
+                                    spacing="20" 
+                                    minWidth="700" 
+                                    maxHeight="130" 
+                                    minHeight="130" 
+                                    prefHeight="130">
+                                    <!-- Папка Home -->
+                                    <Button styleClass="folder-button">
+                                        <graphic>
+                                            <StackPane>
+                                                <Rectangle width="153" height="146" styleClass="folder-bg" fill="#8A7CDB"/>
+                                                <SVGPath content="M30,40 L60,40 L70,50 L90,50 L90,80 L30,80 Z" 
+                                                        fill="#B0A5E8" styleClass="folder-icon"/>
+                                                <Label text="Home" styleClass="folder-label"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Button>
+                                    
+                                    <!-- Папка Projects -->
+                                    <Button styleClass="folder-button">
+                                        <graphic>
+                                            <StackPane>
+                                                <Rectangle width="153" height="146" styleClass="folder-bg" fill="#FFD97D"/>
+                                                <SVGPath content="M30,40 L60,40 L70,50 L90,50 L90,80 L30,80 Z" 
+                                                        fill="#FFE9B3" styleClass="folder-icon"/>
+                                                <Label text="Projects" styleClass="folder-label"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Button>
+                                    
+                                    <!-- Папка Personal -->
+                                    <Button styleClass="folder-button">
+                                        <graphic>
+                                            <StackPane>
+                                                <Rectangle width="153" height="146" styleClass="folder-bg" fill="#85C1E9"/>
+                                                <SVGPath content="M30,40 L60,40 L70,50 L90,50 L90,80 L30,80 Z" 
+                                                        fill="#B3DFFF" styleClass="folder-icon"/>
+                                                <Label text="Personal" styleClass="folder-label"/>
+                                            </StackPane>
+                                        </graphic>
+                                    </Button>
+                                </HBox>
+                            </content>
+                        </ScrollPane>
+                    </VBox>
+                </StackPane>
+                <StackPane >
+                    <Rectangle fx:id="notesRec" width="450" height="445" styleClass="rectangle" arcHeight="30" arcWidth="30"/>
+                    <VBox>
+                        <HBox alignment="CENTER_LEFT">
+                            <Label fx:id="notesLabel" text="Notes" styleClass="section-title"/>
+                            <HBox styleClass="notes-button" spacing="10">
+                                <Button fx:id="plusButton2" text="+" styleClass="add-button"/>
+                                <Button fx:id="allButton" text="All >" styleClass="view-all-button"/>
+                            </HBox>
+                        </HBox>
+                        <StackPane styleClass="notes-scroll-container">
+                            <ScrollPane fx:id="notesScrollPane" styleClass="notes-scroll" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                                <VBox styleClass="vbox-scrollable" >
+                                    <VBox>
+                                        <Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow>
+                                        <Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow><Label text="notes Task-1" styleClass="task-name"/>
+                                        <TextFlow styleClass="task-description">
+                                            <Text text="Очень длинное описание задачи, которое нужно корректно оборачивать и отображать."/>
+                                        </TextFlow>
+                                    </VBox>
+                                </VBox>
+                            </ScrollPane>
+                        </StackPane>
+                    </VBox>
+                </StackPane>
+            </VBox>
+        </center>
+    </BorderPane>

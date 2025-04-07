@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Line?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.task_manager.View.MainViewController">
+
+    <!-- allTaskPane StackPane -->
+    <StackPane fx:id="allTaskPane" prefWidth="700" prefHeight="700" style="-fx-background-color: #000000;">
+        <HBox spacing="15">
+            <Rectangle width="100" height="50" styleClass="rectangle" />
+            <VBox>
+                <Label styleClass="selection-title" text="All Tasks" />
+                <Line startX="0" endX="100" styleClass="line" />
+            </VBox>
+        </HBox>
+    </StackPane>
+
+    
+</StackPane>
